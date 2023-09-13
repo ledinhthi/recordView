@@ -322,8 +322,9 @@ public final class FlipBook: NSObject {
     #else
 
     @objc internal func tick(_ displayLink: CADisplayLink) {
-        print("OnTick write frame")
-        sourceView?.backgroundColor = .clear;
+        print("OnTick write frame2222")
+        sourceView?.backgroundColor = UIColor.clear;
+        
         guard let viewImage = sourceView?.fb_makeViewSnapshot() else {
             return
         }
