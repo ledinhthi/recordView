@@ -310,15 +310,20 @@ public final class FlipBook: NSObject {
     
     #if os(OSX)
     internal func tick() {
+        print("OnTick write frame")
+        sourceView?.backgroundColor = .clear;
         guard let viewImage = sourceView?.fb_makeViewSnapshot() else {
             return
         }
+        
         writer.writeFrame(viewImage)
     }
     
     #else
 
     @objc internal func tick(_ displayLink: CADisplayLink) {
+        print("OnTick write frame")
+        sourceView?.backgroundColor = .clear;
         guard let viewImage = sourceView?.fb_makeViewSnapshot() else {
             return
         }

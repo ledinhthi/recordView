@@ -66,10 +66,13 @@ public final class FlipBookCoreAnimationVideoEditor: NSObject {
         
         var preset: String = "";
         if #available(iOS 13.0, *) {
+            print("OnAlpha")
             preset =  AVAssetExportPresetHEVCHighestQualityWithAlpha;
         } else {
+            print("not OnAlpha")
             preset =  AVAssetExportPresetHighestQuality;
         }
+        
         
         guard let compositionTrack = composition.addMutableTrack(withMediaType: .video,
                                                                  preferredTrackID: kCMPersistentTrackID_Invalid),
