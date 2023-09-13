@@ -123,7 +123,7 @@ public final class FlipBookCoreAnimationVideoEditor: NSObject {
                                                            assetTrack: assetTrack)
         instruction.layerInstructions = [layerInstruction]
           
-        guard let export = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality) else {
+        guard let export = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHEVCHighestQualityWithAlpha) else {
             DispatchQueue.main.async { completion(.failure(FlipBookCoreAnimationVideoEditorError.couldNotCreateExportSession)) }
             return
         }
