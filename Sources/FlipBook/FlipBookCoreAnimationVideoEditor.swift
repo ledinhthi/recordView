@@ -64,6 +64,13 @@ public final class FlipBookCoreAnimationVideoEditor: NSObject {
         let asset = AVURLAsset(url: videoURL)
         let composition = AVMutableComposition()
         
+        var preset: String = "";
+        if #available(iOS 13.0, *) {
+            preset =  AVAssetExportPresetHEVCHighestQualityWithAlpha;
+        } else {
+            preset =  AVAssetExportPresetHighestQuality;
+        }
+        
         guard let compositionTrack = composition.addMutableTrack(withMediaType: .video,
                                                                  preferredTrackID: kCMPersistentTrackID_Invalid),
             let assetTrack = asset.tracks(withMediaType: .video).first else {
@@ -123,7 +130,7 @@ public final class FlipBookCoreAnimationVideoEditor: NSObject {
                                                            assetTrack: assetTrack)
         instruction.layerInstructions = [layerInstruction]
           
-        guard let export = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHEVCHighestQualityWithAlpha) else {
+        guard let export = AVAssetExportSession(asset: composition, presetName: preset) else {
             DispatchQueue.main.async { completion(.failure(FlipBookCoreAnimationVideoEditorError.couldNotCreateExportSession)) }
             return
         }
