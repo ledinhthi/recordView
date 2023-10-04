@@ -584,7 +584,7 @@ public final class FlipBookAssetWriter: NSObject {
     /// Function that returns the default file url for the generated video
     internal func makeFileOutputURL(fileName: String = "recordVideo.mov") -> URL? {
         do {
-            var cachesDirectory: URL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask)
+            var cachesDirectory: URL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             cachesDirectory.appendPathComponent(fileName)
             if FileManager.default.fileExists(atPath: cachesDirectory.path) {
                 try FileManager.default.removeItem(atPath: cachesDirectory.path)
